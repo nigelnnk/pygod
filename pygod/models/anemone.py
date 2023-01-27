@@ -284,7 +284,7 @@ class ANEMONE(BaseDetector):
                 ba = torch.cat((ba, added_adj_zero_col), dim=2)
                 bf = torch.cat(bf)
                 bf = torch.cat(
-                    (bf[:, :-1, :], added_feat_zero_row, bf[:, -1:, :]), dim=1)
+                    (added_feat_zero_row, bf[:, 1:, :], bf[:, 0 : 1, :]), dim=1)
 
                 logits_1, logits_2 = self.model(bf, ba)
 
@@ -425,7 +425,7 @@ class ANEMONE(BaseDetector):
                 ba = torch.cat((ba, added_adj_zero_col), dim=2)
                 bf = torch.cat(bf)
                 bf = torch.cat(
-                    (bf[:, :-1, :], added_feat_zero_row, bf[:, -1:, :]), dim=1)
+                    (added_feat_zero_row, bf[:, 1:, :], bf[:, 0 : 1, :]), dim=1)
 
                 with torch.no_grad():
 

@@ -358,9 +358,9 @@ class CoLA_Base(nn.Module):
         batch_adj = torch.cat((batch_adj, added_adj_zero_col), dim=2)
         batch_feature = torch.cat(batch_feature)
         batch_feature = torch.cat(
-            (batch_feature[:, :-1, :],
-             added_feat_zero_row,
-             batch_feature[:, -1:, :]), dim=1)
+            (added_feat_zero_row,
+             batch_feature[:, 1:, :],
+             batch_feature[:, 0:1, :]), dim=1)
 
         h_1 = self.gcn(batch_feature, batch_adj, sparse)
 
